@@ -1,0 +1,183 @@
+/* css/poster.css — Poster styles for PNG export (dark theme) */
+
+.poster {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  width: 1200px;
+  padding: 48px;
+  line-height: 1.5;
+}
+
+/* Header */
+.poster-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.poster-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.poster-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.poster-date {
+  font-size: 16px;
+  color: #8a8a9a;
+  margin-bottom: 12px;
+}
+
+.poster-comment-global {
+  font-size: 18px;
+  color: #b0b0c0;
+  font-style: italic;
+  margin-top: 12px;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* Scenes container */
+.poster-scenes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Scene card */
+.poster-scene {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  border-left: 4px solid rgba(255, 255, 255, 0.15);
+}
+
+.poster-scene-alert {
+  border-left-width: 6px;
+  border: 2px solid rgba(243, 156, 18, 0.4);
+  border-left-width: 6px;
+}
+
+/* Scene header */
+.poster-scene-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.poster-scene-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.poster-alert-badge {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f39c12;
+  background: rgba(243, 156, 18, 0.15);
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* Progress */
+.poster-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.poster-progress-bar {
+  flex: 1;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.poster-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+
+.poster-progress-pct {
+  font-size: 20px;
+  font-weight: 800;
+  min-width: 52px;
+  text-align: right;
+}
+
+.poster-status-icon {
+  font-size: 22px;
+}
+
+/* Todo block */
+.poster-todo {
+  background: rgba(52, 152, 219, 0.1);
+  border: 1px solid rgba(52, 152, 219, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.poster-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.poster-todo-content {
+  font-size: 15px;
+  color: #d0d0e0;
+}
+
+.poster-todo-item {
+  padding: 3px 0;
+}
+
+/* Comment block */
+.poster-comment {
+  background: rgba(142, 68, 173, 0.1);
+  border: 1px solid rgba(142, 68, 173, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.poster-comment-content {
+  font-size: 14px;
+  color: #b0b0c0;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Footer */
+.poster-footer {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  color: #6a6a7a;
+}

@@ -1,0 +1,27 @@
+{
+  "name": "showstatevisualisation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElProton/showStateVisualisation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ElProton/showStateVisualisation/issues"
+  },
+  "homepage": "https://github.com/ElProton/showStateVisualisation#readme",
+  "dependencies": {
+    "html2canvas": "^1.4.1"
+  }
+}
