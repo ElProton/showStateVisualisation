@@ -1,10 +1,21 @@
-// js/storage.js — localStorage management with debounce
+/**
+ * @module storage
+ * @description localStorage management with debounce.
+ *
+ * Provides a thin, error-tolerant wrapper around `localStorage` for
+ * persisting the spectacle state between sessions.  A 500 ms debounce
+ * avoids excessive writes during rapid edits.
+ */
 
+/** @type {string} localStorage key used to persist the spectacle. */
 const STORAGE_KEY = 'spectacle_cache';
+
+/** @type {number|null} Handle returned by `setTimeout` for the debounce timer. */
 let debounceTimer = null;
 
 /**
  * Saves state to localStorage immediately.
+ * @param {object} state - The serialised spectacle state.
  */
 export function saveToStorage(state) {
   try {
@@ -15,7 +26,8 @@ export function saveToStorage(state) {
 }
 
 /**
- * Saves state to localStorage with debounce (500ms).
+ * Saves state to localStorage with a 500 ms debounce to limit write frequency.
+ * @param {object} state - The serialised spectacle state.
  */
 export function debouncedSave(state) {
   if (debounceTimer) clearTimeout(debounceTimer);
@@ -23,7 +35,9 @@ export function debouncedSave(state) {
 }
 
 /**
- * Loads state from localStorage. Returns null if nothing stored.
+ * Loads the cached spectacle state from localStorage.
+ * @returns {object|null} The parsed state, or `null` if nothing is stored
+ *   or if parsing fails.
  */
 export function loadFromStorage() {
   try {

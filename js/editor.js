@@ -1,8 +1,16 @@
-// js/editor.js — Editor UI rendering and event handling
+/**
+ * @module editor
+ * @description Editor UI rendering and event handling.
+ *
+ * Builds the full editor form (title, global comment, scene cards with
+ * drag-and-drop) inside a given container element and wires input events
+ * back to a state-change callback.
+ */
 
 import { createEmptyScene, getProgressColor, getProgressHex } from './state.js';
 import { validateAvancement, validateSceneName } from './validator.js';
 
+/** @type {number|null} Index of the scene card currently being dragged. */
 let dragSrcIndex = null;
 
 /**
@@ -76,6 +84,15 @@ export function renderEditor(container, state, onStateChange) {
   container.appendChild(actions);
 }
 
+/**
+ * Renders a single scene card with all its fields, drag-and-drop
+ * handlers, validation and a delete button.
+ * @param {object} scene - The scene data object.
+ * @param {number} index - Zero-based position of the scene.
+ * @param {object} state - The full spectacle state (used to access sibling scenes).
+ * @param {function} onStateChange - Callback invoked with the updated state.
+ * @returns {HTMLDivElement} The scene card element.
+ */
 function renderSceneCard(scene, index, state, onStateChange) {
   const card = document.createElement('div');
   card.className = 'scene-card';
@@ -220,6 +237,15 @@ function renderSceneCard(scene, index, state, onStateChange) {
   return card;
 }
 
+/**
+ * Creates a labelled text-input field group.
+ * @param {string} label - The label text.
+ * @param {string} type - Input type attribute (e.g. `'text'`).
+ * @param {string} value - Current value.
+ * @param {function} onChange - Called with the new value on input.
+ * @param {string} [id] - Optional element id.
+ * @returns {HTMLDivElement} The field group element.
+ */
 function createFieldGroup(label, type, value, onChange, id) {
   const group = document.createElement('div');
   group.className = 'field-group';
@@ -236,6 +262,14 @@ function createFieldGroup(label, type, value, onChange, id) {
   return group;
 }
 
+/**
+ * Creates a labelled textarea field group.
+ * @param {string} label - The label text.
+ * @param {string} value - Current value.
+ * @param {function} onChange - Called with the new value on input.
+ * @param {string} [id] - Optional element id.
+ * @returns {HTMLDivElement} The field group element.
+ */
 function createTextareaGroup(label, value, onChange, id) {
   const group = document.createElement('div');
   group.className = 'field-group';
@@ -252,6 +286,11 @@ function createTextareaGroup(label, value, onChange, id) {
   return group;
 }
 
+/**
+ * Formats an ISO 8601 date string into a human-readable French date.
+ * @param {string} isoString - ISO 8601 date string.
+ * @returns {string} Formatted date or `'—'` when the input is falsy.
+ */
 function formatDate(isoString) {
   if (!isoString) return '—';
   const d = new Date(isoString);

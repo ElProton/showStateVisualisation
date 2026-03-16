@@ -1,16 +1,27 @@
-// js/fileManager.js — JSON import/export using browser APIs
+/**
+ * @module fileManager
+ * @description JSON import/export and PNG download using browser APIs.
+ *
+ * All file operations use in-memory Blobs and programmatic anchor clicks
+ * so they work entirely client-side without a server.
+ */
 
 import { validateSpectacle } from './validator.js';
 
 /**
- * Sanitizes a string for use as a filename.
+ * Sanitizes a string for use as a filename by replacing special
+ * characters and whitespace with underscores.
+ * @param {string} str - The raw string (e.g. the spectacle title).
+ * @returns {string} A filesystem-safe filename fragment.
  */
 function sanitizeFilename(str) {
   return str.replace(/[^a-zA-Z0-9À-ÿ\- ]/g, '_').replace(/\s+/g, '_');
 }
 
 /**
- * Triggers a JSON file download.
+ * Triggers a JSON file download of the spectacle state.
+ * The filename is derived from the title and modification date.
+ * @param {object} state - The serialised spectacle state.
  */
 export function exportJSON(state) {
   const dateStr = state.dateModification
@@ -30,8 +41,9 @@ export function exportJSON(state) {
 }
 
 /**
- * Reads and validates a JSON file.
- * Returns a Promise resolving to { valid, data?, errors? }.
+ * Reads and validates a JSON file selected by the user.
+ * @param {File} file - The file from an `<input type="file">`.
+ * @returns {Promise<{valid: true, data: object}|{valid: false, errors: string[]}>}
  */
 export function importJSON(file) {
   return new Promise((resolve) => {
@@ -64,7 +76,10 @@ export function importJSON(file) {
 }
 
 /**
- * Triggers a PNG file download from a blob.
+ * Triggers a PNG file download from a Blob.
+ * @param {Blob} blob - The PNG image blob.
+ * @param {string} titre - Spectacle title (used in the filename).
+ * @param {string} dateModification - ISO 8601 date string (used in the filename).
  */
 export function downloadPNG(blob, titre, dateModification) {
   const dateStr = dateModification

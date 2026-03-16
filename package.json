@@ -1,7 +1,7 @@
 {
   "name": "showstatevisualisation",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lightweight vanilla JS app for tracking and visualising the production state of a theatrical show",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/ElProton/showStateVisualisation.git"
   },
-  "keywords": [],
+  "keywords": ["theatre", "production", "tracking", "visualisation", "spectacle", "vanilla-js"],
   "author": "",
   "license": "ISC",
   "type": "module",
