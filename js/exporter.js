@@ -1,4 +1,11 @@
-// js/exporter.js — PNG export using html2canvas
+/**
+ * @module exporter
+ * @description PNG export using html2canvas.
+ *
+ * Renders the spectacle state as a styled poster in a hidden off-screen
+ * container, captures it with `html2canvas` at 2× resolution and
+ * triggers a PNG download.
+ */
 
 import { renderPoster } from './poster.js';
 import { downloadPNG } from './fileManager.js';

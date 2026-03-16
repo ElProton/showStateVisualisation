@@ -1,4 +1,11 @@
-// js/poster.js — Poster DOM renderer for PNG export
+/**
+ * @module poster
+ * @description Poster DOM builder for PNG capture.
+ *
+ * Constructs a dark-themed poster layout inside a hidden container.
+ * The resulting DOM tree is then captured by {@link module:exporter}
+ * using `html2canvas` to produce a downloadable PNG image.
+ */
 
 import { getProgressHex } from './state.js';
 
@@ -42,6 +49,12 @@ export function renderPoster(container, state) {
   container.appendChild(footer);
 }
 
+/**
+ * Renders a single scene card for the poster.
+ * Low-advancement scenes (< 50 %) receive an alert style.
+ * @param {object} scene - The scene data object.
+ * @returns {HTMLDivElement} The poster scene card element.
+ */
 function renderPosterScene(scene) {
   const isLow = scene.avancement < 50;
   const color = getProgressHex(scene.avancement);
@@ -116,6 +129,12 @@ function renderPosterScene(scene) {
   return card;
 }
 
+/**
+ * Converts a multiline todo-list string into HTML bullet items.
+ * Leading dash/bullet characters are normalised to `•`.
+ * @param {string} text - Raw todo text (one item per line).
+ * @returns {string} HTML string of `<div>` elements.
+ */
 function formatTodoList(text) {
   return text.split('\n')
     .filter(line => line.trim())
@@ -126,6 +145,11 @@ function formatTodoList(text) {
     .join('');
 }
 
+/**
+ * Returns a status emoji for a given advancement percentage.
+ * @param {number} avancement - Completion percentage (0–100).
+ * @returns {string} An emoji character.
+ */
 function getStatusEmoji(avancement) {
   if (avancement <= 25) return '🔴';
   if (avancement <= 50) return '🟠';
@@ -134,12 +158,22 @@ function getStatusEmoji(avancement) {
   return '✅';
 }
 
+/**
+ * Returns a subtle RGBA background tint for low-advancement scenes.
+ * @param {number} avancement - Completion percentage (0–100).
+ * @returns {string|null} A CSS `rgba()` value, or `null` for scenes above 50 %.
+ */
 function getBgTint(avancement) {
   if (avancement <= 25) return 'rgba(231, 76, 60, 0.08)';
   if (avancement <= 50) return 'rgba(243, 156, 18, 0.06)';
   return null;
 }
 
+/**
+ * Formats an ISO 8601 date string into a French locale date (day month year).
+ * @param {string} isoString - ISO 8601 date string.
+ * @returns {string} Formatted date or `'—'` when the input is falsy.
+ */
 function formatDatePoster(isoString) {
   if (!isoString) return '—';
   const d = new Date(isoString);
@@ -148,6 +182,11 @@ function formatDatePoster(isoString) {
   });
 }
 
+/**
+ * Escapes a string for safe insertion into HTML.
+ * @param {string} str - The raw string.
+ * @returns {string} The HTML-escaped string.
+ */
 function escapeHTML(str) {
   const div = document.createElement('div');
   div.textContent = str;

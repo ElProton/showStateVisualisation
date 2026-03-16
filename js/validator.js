@@ -1,8 +1,16 @@
-// js/validator.js — JSON schema validation with detailed error messages
+/**
+ * @module validator
+ * @description JSON schema validation with detailed French error messages.
+ *
+ * Provides full-object validation ({@link validateSpectacle}) used during
+ * JSON import, as well as per-field validators used by the editor for
+ * real-time feedback.
+ */
 
 /**
  * Validates a spectacle data object against the expected schema.
- * Returns { valid: true, data } or { valid: false, errors: string[] }
+ * @param {object} data - The raw object parsed from JSON.
+ * @returns {{valid: true, data: object}|{valid: false, errors: string[]}}
  */
 export function validateSpectacle(data) {
   const errors = [];
@@ -63,7 +71,9 @@ export function validateSpectacle(data) {
 }
 
 /**
- * Validates individual field constraints for the editor.
+ * Validates an advancement value entered in the editor.
+ * @param {string|number} value - The raw input value.
+ * @returns {string|null} An error message, or `null` when valid.
  */
 export function validateAvancement(value) {
   const num = Number(value);
@@ -73,6 +83,13 @@ export function validateAvancement(value) {
   return null;
 }
 
+/**
+ * Validates a scene name for presence and uniqueness.
+ * @param {string} name - The scene name to validate.
+ * @param {string[]} allNames - All scene names in the current spectacle.
+ * @param {number} currentIndex - Index of the scene being validated (excluded from duplicate check).
+ * @returns {string|null} An error message, or `null` when valid.
+ */
 export function validateSceneName(name, allNames, currentIndex) {
   if (!name || name.trim() === '') return 'Le nom de la scène est obligatoire.';
   const trimmed = name.trim();
@@ -81,6 +98,11 @@ export function validateSceneName(name, allNames, currentIndex) {
   return null;
 }
 
+/**
+ * Validates the spectacle title.
+ * @param {string} titre - The title string.
+ * @returns {string|null} An error message, or `null` when valid.
+ */
 export function validateTitre(titre) {
   if (!titre || titre.trim() === '') return 'Le titre du spectacle est obligatoire pour la sauvegarde.';
   return null;
