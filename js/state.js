@@ -36,7 +36,8 @@ export function createEmptyScene() {
 }
 
 /**
- * Returns a shallow clone of the state with an updated `dateModification`.
+ * Returns a copy of the state with an updated `dateModification`.
+ * Only the top-level object is cloned; the `scenes` array is shared by reference.
  * @param {object} state - The current spectacle state.
  * @returns {object} A new state object with the current timestamp.
  */

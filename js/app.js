@@ -2,9 +2,9 @@
  * @module app
  * @description Main application orchestration.
  *
- * Boots the app on {@link https://developer.mozilla.org/docs/Web/API/Document/DOMContentLoaded_event DOMContentLoaded},
- * manages the current spectacle state and wires together the editor UI,
- * file import/export and PNG generation.
+ * Boots the app on `DOMContentLoaded`, manages the current spectacle
+ * state and wires together the editor UI, file import/export and PNG
+ * generation.
  */
 
 import { createEmptySpectacle, touchDate, serializeState, importState } from './state.js';
